@@ -102,22 +102,40 @@ extension KnotSocketIO {
             let emitCallback = socket.emitWithAck(KnotSocketClientEvent.devices.rawValue, params)
             
             emitCallback.timingOut(after: 5, callback: { (data) in
-                if data.count > 0, let result = data[0] as? [String : AnyObject] {
+                print("data: \(data)")
+                
+                if data.count > 0 {
 //                    guard result["Error"] == nil else {
 //                        // todo: dispatch error
+//                        // todo: verify if we really need this verification
 //                        return
 //                    }
+//
+//                    if let error = result["error"] as? [String : AnyObject] {
+//                        print("An error occurred: \(error)")
+//                        // todo: dispatch the correct error here
+//                        callback(nil, KnotSocketError.timeout)
+//                        return
+//                    }
+
+                    var devices = [[String : Any]]()
                     
-                    if let error = result["error"] as? [String : AnyObject] {
-                        print("An error occurred: \(error)")
-                        // todo: dispatch the correct error here
-                        callback(nil, KnotSocketError.timeout)
-                        return
+                    for result in data {
+                        if let result = result as? NSArray {
+                            for subResult in result {
+                                if let subResult = subResult as? NSDictionary {
+                                    var device = [String : Any]()
+                                    device["name"] = subResult["name"]
+                                    device["type"] = subResult["type"]
+                                    device["uuid"] = subResult["uuid"]
+                                    device["online"] = subResult["online"]
+                                    devices.append(device)
+                                }
+                            }
+                        }
                     }
                     
-                    if let devices = result["devices"] {
-                        callback(devices, nil)
-                    }
+                    callback(devices as AnyObject, nil)
                 } else {
                     // todo: dispatch error here: timeout
                     callback(nil, KnotSocketError.timeout)
