@@ -22,7 +22,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "Devices"
+        navigationItem.title = "Gateways"
         navigationController?.navigationBar.prefersLargeTitles = true
         
         tableView.delegate = self
@@ -30,15 +30,74 @@ class ViewController: UIViewController {
         
         let socketIO = KnotSocketIO()
         
-        socketIO.getDevices { (data, error) in
+//        socketIO.getDevices { (data, error) in
+//            guard error == nil else {
+//                print("error: \(error?.localizedDescription)")
+//
+//                let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
+//                let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+//
+//                alertController.addAction(action)
+//                self.present(alertController, animated: true, completion: nil)
+//
+//                return
+//            }
+//
+//            self.datasource = data as? [[String : Any]]
+//            self.tableView.reloadData()
+//        }
+        
+        let http = KnotHttp()
+        http.myDevices { (data, error) in
             guard error == nil else {
-                print("error: \(error?.localizedDescription)")
+                let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
+                let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+
+                alertController.addAction(action)
+                self.present(alertController, animated: true, completion: nil)
+
                 return
             }
             
-            self.datasource = data as? [[String : Any]]
-            self.tableView.reloadData()
+            if let data = data {
+                var gateways = [[String : Any]]()
+                
+                for result in data {
+                    if let result = result as? [String : Any], let error = result["error"] as? [String : Any] {
+                        print("An error occurred: \(error)")
+                        
+                        if let message = error["message"] as? String {
+                            let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+                            let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+                            
+                            alertController.addAction(action)
+                            self.present(alertController, animated: true, completion: nil)
+                            
+                            return
+                        }
+                        
+                        return
+                    }
+                    
+                    var gateway = [String : Any]()
+                    
+                    gateway["uuid"] = result["uuid"]
+                    gateway["type"] = result["type"]
+                    gateway["owner"] = result["uuid"]
+                    gateway["online"] = result["online"]
+                    
+                    gateways.append(gateway)
+                }
+                
+                self.datasource = gateways
+                self.tableView.reloadData()
+            }
         }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let viewController = segue.destination as! DeviceDetailsViewController
+        viewController.selectedUUID = sender as? String
     }
 }
 
@@ -53,11 +112,23 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "simpleCell")
         let row = indexPath.row
-        cell.textLabel?.text = (datasource![row])["name"] as? String
-        cell.detailTextLabel?.text = (datasource![row])["uuid"] as? String
-        return cell
+        
+        cell!.textLabel?.text = (datasource![row])["type"] as? String
+        cell!.detailTextLabel?.text = (datasource![row])["uuid"] as? String
+        
+        return cell!
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let datasource = datasource {
+            let index = indexPath.row
+            let device = datasource[index]
+            
+            if let uuid = device["uuid"] as? String {
+                performSegue(withIdentifier: "deviceDetails", sender: uuid)
+            }
+        }
     }
 }
-

@@ -12,6 +12,8 @@ import SocketIO
 // todo: elabora all possible errors
 enum KnotSocketError: Error {
     case timeout
+    case notFound
+    case custom(message: String)
     
     // todo: remove this for the real error name
     case notDefined
@@ -21,6 +23,10 @@ enum KnotSocketError: Error {
         switch self {
         case .timeout:
             return "The request timed out"
+        case .notFound:
+            return "Resource not found"
+        case .custom(let message):
+            return message
         default:
             return ""
         }
@@ -34,8 +40,11 @@ class KnotSocketIO {
     private let port = 3000
     
     // MARK: User credential variables
-    private let uuid = "c28c23c6-3de9-4dd5-afee-c2e3bdd00000"
-    private let token = "31cf7222a1d8ab13238eead0c3b6d904fe140875"
+    private let uuid = "a9cc3e68-abea-4541-972a-39cf32bd0000"
+    private let token = "097ee5c09e978c3ebc3841c362107de832d50664"
+    
+    // MARK: Thing UUID variable
+    private let deviceUUID = "95f58649-edc9-4f9b-a9ec-30cd08de0001"
     
     // MARK: Variables
 }
@@ -111,16 +120,19 @@ extension KnotSocketIO {
 //                        return
 //                    }
 //
-//                    if let error = result["error"] as? [String : AnyObject] {
-//                        print("An error occurred: \(error)")
-//                        // todo: dispatch the correct error here
-//                        callback(nil, KnotSocketError.timeout)
-//                        return
-//                    }
 
                     var devices = [[String : Any]]()
                     
                     for result in data {
+                        if let result = result as? [String : AnyObject], let error = result["error"] as? [String : AnyObject] {
+                            print("An error occurred: \(error)")
+                            // todo: dispatch the correct error here
+                            if let message = error["message"] as? String {
+                                callback(nil, KnotSocketError.custom(message: message))
+                            }
+                            return
+                        }
+
                         if let result = result as? NSArray {
                             for subResult in result {
                                 if let subResult = subResult as? NSDictionary {
@@ -143,6 +155,74 @@ extension KnotSocketIO {
             })
         }
 
+        genericOperation(operation: operation, callback: callback)
+    }
+    
+    func getData(callback: @escaping (AnyObject?, KnotSocketError?) -> ()) {
+        let operation: ((SocketIOClient) -> ()) = { socket in
+            
+            var params = [String : Any]()
+            params["uuid"] = self.deviceUUID
+            
+            let sensorID = ["sensor_id" : 1]
+            let json = try! JSONSerialization.data(withJSONObject: sensorID, options: .prettyPrinted)
+            params["get_data"] = [json]
+            
+            let emitCallback = socket.emitWithAck(KnotSocketClientEvent.update.rawValue, params)
+            
+            emitCallback.timingOut(after: 0, callback: { (data) in
+                print("data: \(data)")
+                
+                if data.count > 0, let first = data.first as? NSDictionary {
+                    if let error = first["error"] {
+                        callback(nil, KnotSocketError.notFound)
+                        return
+                    }
+                    
+                    callback(data as AnyObject, nil)
+                } else {
+                    // todo: dispatch error here: timeout
+                    callback(nil, KnotSocketError.timeout)
+                }
+            })
+        }
+        
+        genericOperation(operation: operation, callback: callback)
+    }
+    
+    func setData(callback: @escaping (AnyObject?, KnotSocketError?) -> ()) {
+        let operation: ((SocketIOClient) -> ()) = { socket in
+            
+            var params = [String : Any]()
+            params["uuid"] = self.deviceUUID
+            
+            let sensorID: [String : Any] = [
+                "sensor_id" : 1,
+                "value": true
+            ]
+            
+            let json = try! JSONSerialization.data(withJSONObject: sensorID, options: .prettyPrinted)
+            params["set_data"] = [json]
+            
+            let emitCallback = socket.emitWithAck(KnotSocketClientEvent.update.rawValue, params)
+            
+            emitCallback.timingOut(after: 0, callback: { (data) in
+                print("data: \(data)")
+                
+                if data.count > 0, let first = data.first as? NSDictionary {
+                    if let error = first["error"] {
+                        callback(nil, KnotSocketError.notFound)
+                        return
+                    }
+                    
+                    callback(data as AnyObject, nil)
+                } else {
+                    // todo: dispatch error here: timeout
+                    callback(nil, KnotSocketError.timeout)
+                }
+            })
+        }
+        
         genericOperation(operation: operation, callback: callback)
     }
 }

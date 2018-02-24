@@ -105,4 +105,5 @@ enum KnotSocketClientEvent: String {
     case identify
     case identity
     case devices
+    case update
 }
