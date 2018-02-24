@@ -141,11 +141,19 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dXU-S3-zL1">
+                                <rect key="frame" x="164" y="420" width="49" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="switchPressed:" destination="Arj-c4-l5D" eventType="valueChanged" id="Wo7-Zg-HMv"/>
+                                </connections>
+                            </switch>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="kD1-dd-2de"/>
                     </view>
                     <connections>
+                        <outlet property="sensorChangeSwitch" destination="dXU-S3-zL1" id="mNn-5c-ckC"/>
                         <outlet property="sensorStatusLabel" destination="rG9-SK-PoZ" id="fOG-ZP-uFK"/>
                     </connections>
                 </viewController>

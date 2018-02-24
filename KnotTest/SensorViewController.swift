@@ -13,6 +13,7 @@ class SensorViewController: UIViewController {
     
     // MARK: IBOutlets variables
     @IBOutlet weak var sensorStatusLabel: UILabel!
+    @IBOutlet weak var sensorChangeSwitch: UISwitch!
     
     // MARK: Segue variables
     var selectedThingUUID: String?
@@ -82,8 +83,13 @@ class SensorViewController: UIViewController {
                 
                 DispatchQueue.main.async {
                     self.sensorStatusLabel.text = result
+                    self.sensorChangeSwitch.setOn(result == "1", animated: true)
                 }
             })
         }
+    }
+    
+    @IBAction func switchPressed(_ sender: Any) {
+        
     }
 }
