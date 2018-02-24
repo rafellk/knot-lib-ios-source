@@ -119,11 +119,39 @@
                     <navigationItem key="navigationItem" id="4eS-F2-Q2V"/>
                     <connections>
                         <outlet property="tableView" destination="gbm-Xw-bXr" id="mSu-zk-T7J"/>
+                        <segue destination="Arj-c4-l5D" kind="show" identifier="toSensor" id="g2I-EZ-uKR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yG1-h5-6MO" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2234" y="104"/>
+        </scene>
+        <!--Sensor View Controller-->
+        <scene sceneID="q6V-hT-qHn">
+            <objects>
+                <viewController id="Arj-c4-l5D" customClass="SensorViewController" customModule="KnotTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vVn-DY-f2c">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rG9-SK-PoZ">
+                                <rect key="frame" x="125" y="275" width="125" height="116"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="47"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="kD1-dd-2de"/>
+                    </view>
+                    <connections>
+                        <outlet property="sensorStatusLabel" destination="rG9-SK-PoZ" id="fOG-ZP-uFK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JNC-yD-Lgm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2965.5999999999999" y="103.89805097451276"/>
         </scene>
         <!--Devices View Controller-->
         <scene sceneID="EIy-xk-Orn">

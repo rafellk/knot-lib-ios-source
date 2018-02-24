@@ -10,6 +10,7 @@
 		432714EE2023D1C5007D7D8D /* KnotHttp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432714ED2023D1C5007D7D8D /* KnotHttp.swift */; };
 		43695A562041ECDE00C9204D /* SensorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43695A552041ECDE00C9204D /* SensorsViewController.swift */; };
 		43695A582041ECF800C9204D /* DevicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43695A572041ECF800C9204D /* DevicesViewController.swift */; };
+		43695A5A2041F31C00C9204D /* SensorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43695A592041F31C00C9204D /* SensorViewController.swift */; };
 		4378317B20129A92008BE08A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4378317A20129A92008BE08A /* AppDelegate.swift */; };
 		4378317D20129A92008BE08A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4378317C20129A92008BE08A /* ViewController.swift */; };
 		4378318020129A92008BE08A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4378317E20129A92008BE08A /* Main.storyboard */; };
@@ -38,6 +39,7 @@
 		432714ED2023D1C5007D7D8D /* KnotHttp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnotHttp.swift; sourceTree = "<group>"; };
 		43695A552041ECDE00C9204D /* SensorsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorsViewController.swift; sourceTree = "<group>"; };
 		43695A572041ECF800C9204D /* DevicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicesViewController.swift; sourceTree = "<group>"; };
+		43695A592041F31C00C9204D /* SensorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorViewController.swift; sourceTree = "<group>"; };
 		4378317720129A92008BE08A /* KnotTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KnotTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4378317A20129A92008BE08A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4378317C20129A92008BE08A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 				43D194CC201D2D9C00AB51A6 /* KnotLib */,
 				4378318620129A92008BE08A /* Info.plist */,
 				43695A572041ECF800C9204D /* DevicesViewController.swift */,
+				43695A592041F31C00C9204D /* SensorViewController.swift */,
 			);
 			path = KnotTest;
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 				432714EE2023D1C5007D7D8D /* KnotHttp.swift in Sources */,
 				43695A562041ECDE00C9204D /* SensorsViewController.swift in Sources */,
 				4378317B20129A92008BE08A /* AppDelegate.swift in Sources */,
+				43695A5A2041F31C00C9204D /* SensorViewController.swift in Sources */,
 				43D194C9201D285D00AB51A6 /* KnotSocketIO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

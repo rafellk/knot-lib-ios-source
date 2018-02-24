@@ -85,7 +85,7 @@ extension KnotSocketIO {
         manager.connect()
     }
     
-    private func genericOperation(operation: @escaping ((SocketIOClient) -> ()), callback: @escaping (AnyObject?, KnotSocketError?) -> ()) {
+    private func genericOperation<T> (operation: @escaping ((SocketIOClient) -> ()), callback: @escaping (T?, KnotSocketError?) -> ()) {
         connect(callback: { (socket, error) in
             guard error == nil else {
                 callback(nil, error)
@@ -101,6 +101,9 @@ extension KnotSocketIO {
             operation(socket)
         })
     }
+}
+
+extension KnotSocketIO {
     
     func getDevices(callback: @escaping (AnyObject?, KnotSocketError?) -> ()) {
         let operation: ((SocketIOClient) -> ()) = { socket in
@@ -114,13 +117,13 @@ extension KnotSocketIO {
                 print("data: \(data)")
                 
                 if data.count > 0 {
-//                    guard result["Error"] == nil else {
-//                        // todo: dispatch error
-//                        // todo: verify if we really need this verification
-//                        return
-//                    }
-//
-
+                    //                    guard result["Error"] == nil else {
+                    //                        // todo: dispatch error
+                    //                        // todo: verify if we really need this verification
+                    //                        return
+                    //                    }
+                    //
+                    
                     var devices = [[String : Any]]()
                     
                     for result in data {
@@ -132,7 +135,7 @@ extension KnotSocketIO {
                             }
                             return
                         }
-
+                        
                         if let result = result as? NSArray {
                             for subResult in result {
                                 if let subResult = subResult as? NSDictionary {
@@ -154,11 +157,11 @@ extension KnotSocketIO {
                 }
             })
         }
-
+        
         genericOperation(operation: operation, callback: callback)
     }
     
-    func getData(thingUUID: String, sensorID: Int, callback: @escaping (AnyObject?, KnotSocketError?) -> ()) {
+    func getData(thingUUID: String, sensorID: Int, callback: @escaping ([[String : Any]]?, KnotSocketError?) -> ()) {
         let operation: ((SocketIOClient) -> ()) = { socket in
             
             var params = [String : Any]()
@@ -173,13 +176,13 @@ extension KnotSocketIO {
             emitCallback.timingOut(after: 0, callback: { (data) in
                 print("data: \(data)")
                 
-                if data.count > 0, let first = data.first as? NSDictionary {
-                    if let error = first["error"] {
-                        callback(nil, KnotSocketError.notFound)
-                        return
-                    }
+                if let data = data as? [[String : Any]] {
+                    //                    if let error = first["error"] {
+                    //                        callback(nil, KnotSocketError.notFound)
+                    //                        return
+                    //                    }
                     
-                    callback(data as AnyObject, nil)
+                    callback(data, nil)
                 } else {
                     // todo: dispatch error here: timeout
                     callback(nil, KnotSocketError.timeout)

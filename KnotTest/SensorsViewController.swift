@@ -70,6 +70,14 @@ class SensorsViewController: UIViewController {
             })
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destination = segue.destination as! SensorViewController
+        let params = sender as! (String, String)
+        
+        destination.selectedThingUUID = params.0
+        destination.sensorID = params.1
+    }
 }
 
 extension SensorsViewController: UITableViewDelegate, UITableViewDataSource {
@@ -86,11 +94,6 @@ extension SensorsViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "simpleCell")!
         let row = indexPath.row
         
-//        if let datasource = datasource, let data = datasource[row]["data"] as? [String : Any] {
-//            cell.textLabel?.text = "sensor id: \(data["sensor_id"] as! Int)"
-//            cell.detailTextLabel?.text = "value: \(data["value"] as! Bool)"
-//        }
-        
         if let datasource = datasource {
             let sensorID = Array(datasource.keys)[row]
             
@@ -99,6 +102,15 @@ extension SensorsViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         return cell
-    }    
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let datasource = datasource {
+            let row = indexPath.row
+            let sensorID = Array(datasource.keys)[row]
+            
+            performSegue(withIdentifier: "toSensor", sender: (selectedUUID, sensorID))
+        }
+    }
 }
 
