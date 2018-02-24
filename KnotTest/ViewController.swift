@@ -15,8 +15,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: Variables
-    private var socket: SocketIOClient!
-    private var manager: SocketManager!
     private var datasource: [[String : Any]]?
     
     override func viewDidLoad() {
@@ -27,25 +25,6 @@ class ViewController: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
-        
-        let socketIO = KnotSocketIO()
-        
-//        socketIO.getDevices { (data, error) in
-//            guard error == nil else {
-//                print("error: \(error?.localizedDescription)")
-//
-//                let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
-//                let action = UIAlertAction(title: "OK", style: .default, handler: nil)
-//
-//                alertController.addAction(action)
-//                self.present(alertController, animated: true, completion: nil)
-//
-//                return
-//            }
-//
-//            self.datasource = data as? [[String : Any]]
-//            self.tableView.reloadData()
-//        }
         
         let http = KnotHttp()
         http.myDevices { (data, error) in
@@ -63,7 +42,7 @@ class ViewController: UIViewController {
                 var gateways = [[String : Any]]()
                 
                 for result in data {
-                    if let result = result as? [String : Any], let error = result["error"] as? [String : Any] {
+                    if let error = result["error"] as? [String : Any] {
                         print("An error occurred: \(error)")
                         
                         if let message = error["message"] as? String {
@@ -96,8 +75,8 @@ class ViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let viewController = segue.destination as! DeviceDetailsViewController
-        viewController.selectedUUID = sender as? String
+        let viewController = segue.destination as! DevicesViewController
+        viewController.selectedGatewayUUID = sender as? String
     }
 }
 
@@ -127,7 +106,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             let device = datasource[index]
             
             if let uuid = device["uuid"] as? String {
-                performSegue(withIdentifier: "deviceDetails", sender: uuid)
+                performSegue(withIdentifier: "toDevices", sender: uuid)
             }
         }
     }

@@ -8,13 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		432714EE2023D1C5007D7D8D /* KnotHttp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432714ED2023D1C5007D7D8D /* KnotHttp.swift */; };
+		43695A562041ECDE00C9204D /* SensorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43695A552041ECDE00C9204D /* SensorsViewController.swift */; };
+		43695A582041ECF800C9204D /* DevicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43695A572041ECF800C9204D /* DevicesViewController.swift */; };
 		4378317B20129A92008BE08A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4378317A20129A92008BE08A /* AppDelegate.swift */; };
 		4378317D20129A92008BE08A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4378317C20129A92008BE08A /* ViewController.swift */; };
 		4378318020129A92008BE08A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4378317E20129A92008BE08A /* Main.storyboard */; };
 		4378318220129A92008BE08A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4378318120129A92008BE08A /* Assets.xcassets */; };
 		4378318520129A92008BE08A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4378318320129A92008BE08A /* LaunchScreen.storyboard */; };
 		4378319020129A92008BE08A /* KnotTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4378318F20129A92008BE08A /* KnotTestTests.swift */; };
-		4383B71A203BA79F00D5339F /* DeviceDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4383B719203BA79F00D5339F /* DeviceDetailsViewController.swift */; };
 		43D194C9201D285D00AB51A6 /* KnotSocketIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D194C8201D285D00AB51A6 /* KnotSocketIO.swift */; };
 		43D194CB201D2D9000AB51A6 /* KnotSocketClientEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D194CA201D2D9000AB51A6 /* KnotSocketClientEvents.swift */; };
 		9095193F0DC984E1AA8F71DA /* Pods_KnotTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9770C9562B12F71055419456 /* Pods_KnotTest.framework */; };
@@ -35,6 +36,8 @@
 		0CDBEC182C735A3D85DFC855 /* Pods-KnotTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KnotTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-KnotTest/Pods-KnotTest.release.xcconfig"; sourceTree = "<group>"; };
 		3F08EBA332657C3DFC29AE5E /* Pods-KnotTestTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KnotTestTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KnotTestTests/Pods-KnotTestTests.release.xcconfig"; sourceTree = "<group>"; };
 		432714ED2023D1C5007D7D8D /* KnotHttp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnotHttp.swift; sourceTree = "<group>"; };
+		43695A552041ECDE00C9204D /* SensorsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorsViewController.swift; sourceTree = "<group>"; };
+		43695A572041ECF800C9204D /* DevicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicesViewController.swift; sourceTree = "<group>"; };
 		4378317720129A92008BE08A /* KnotTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KnotTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4378317A20129A92008BE08A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4378317C20129A92008BE08A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -45,7 +48,6 @@
 		4378318B20129A92008BE08A /* KnotTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KnotTestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4378318F20129A92008BE08A /* KnotTestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnotTestTests.swift; sourceTree = "<group>"; };
 		4378319120129A92008BE08A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4383B719203BA79F00D5339F /* DeviceDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDetailsViewController.swift; sourceTree = "<group>"; };
 		43D194C8201D285D00AB51A6 /* KnotSocketIO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnotSocketIO.swift; sourceTree = "<group>"; };
 		43D194CA201D2D9000AB51A6 /* KnotSocketClientEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnotSocketClientEvents.swift; sourceTree = "<group>"; };
 		8850B3C6283FE31FCC5C3803 /* Pods-KnotTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KnotTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KnotTest/Pods-KnotTest.debug.xcconfig"; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 		4378317920129A92008BE08A /* KnotTest */ = {
 			isa = PBXGroup;
 			children = (
+				43695A552041ECDE00C9204D /* SensorsViewController.swift */,
 				4378317A20129A92008BE08A /* AppDelegate.swift */,
 				4378317C20129A92008BE08A /* ViewController.swift */,
 				4378317E20129A92008BE08A /* Main.storyboard */,
@@ -104,7 +107,7 @@
 				4378318320129A92008BE08A /* LaunchScreen.storyboard */,
 				43D194CC201D2D9C00AB51A6 /* KnotLib */,
 				4378318620129A92008BE08A /* Info.plist */,
-				4383B719203BA79F00D5339F /* DeviceDetailsViewController.swift */,
+				43695A572041ECF800C9204D /* DevicesViewController.swift */,
 			);
 			path = KnotTest;
 			sourceTree = "<group>";
@@ -351,9 +354,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				43D194CB201D2D9000AB51A6 /* KnotSocketClientEvents.swift in Sources */,
+				43695A582041ECF800C9204D /* DevicesViewController.swift in Sources */,
 				4378317D20129A92008BE08A /* ViewController.swift in Sources */,
 				432714EE2023D1C5007D7D8D /* KnotHttp.swift in Sources */,
-				4383B71A203BA79F00D5339F /* DeviceDetailsViewController.swift in Sources */,
+				43695A562041ECDE00C9204D /* SensorsViewController.swift in Sources */,
 				4378317B20129A92008BE08A /* AppDelegate.swift in Sources */,
 				43D194C9201D285D00AB51A6 /* KnotSocketIO.swift in Sources */,
 			);

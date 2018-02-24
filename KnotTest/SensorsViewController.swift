@@ -9,7 +9,7 @@
 import UIKit
 import SocketIO
 
-class DeviceDetailsViewController: UIViewController {
+class SensorsViewController: UIViewController {
     
     // MARK: IBOutlets Variables
     @IBOutlet weak var tableView: UITableView!
@@ -18,38 +18,17 @@ class DeviceDetailsViewController: UIViewController {
     var selectedUUID: String?
     
     // MARK: Variables
-//    private var datasource: [[String : Any]]?
     private var datasource: [String : Any]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        navigationItem.title = "Things"
         navigationItem.title = "Sensors"
         navigationController?.navigationBar.prefersLargeTitles = true
         
         tableView.delegate = self
         tableView.dataSource = self
         
-//        let socketIO = KnotSocketIO()
-        
-//        socketIO.getDevices { (data, error) in
-//            guard error == nil else {
-//                print("error: \(error?.localizedDescription)")
-//
-//                let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
-//                let action = UIAlertAction(title: "OK", style: .default, handler: nil)
-//
-//                alertController.addAction(action)
-//                self.present(alertController, animated: true, completion: nil)
-//
-//                return
-//            }
-//
-//            self.datasource = data as? [[String : Any]]
-//            self.tableView.reloadData()
-//        }
-
         fetch()
         
         Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { (timer) in
@@ -62,7 +41,7 @@ class DeviceDetailsViewController: UIViewController {
             
             KnotHttp().data(uuid: uuid, callback: { (data, error) in
                 guard error == nil else {
-                    print("error: \(error?.localizedDescription)")
+                    print("error: \(error!.localizedDescription)")
                     
                     let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
                     let action = UIAlertAction(title: "OK", style: .default, handler: nil)
@@ -93,7 +72,7 @@ class DeviceDetailsViewController: UIViewController {
     }
 }
 
-extension DeviceDetailsViewController: UITableViewDelegate, UITableViewDataSource {
+extension SensorsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let datasource = datasource {
@@ -120,17 +99,6 @@ extension DeviceDetailsViewController: UITableViewDelegate, UITableViewDataSourc
         }
         
         return cell
-    }
-    
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        if let datasource = datasource {
-//            let index = indexPath.row
-//            let device = datasource[index]
-//
-//            if let uuid = device["uuid"] as? String {
-//                performSegue(withIdentifier: "deviceDetails", sender: uuid)
-//            }
-//        }
-//    }
+    }    
 }
 

@@ -40,8 +40,8 @@ class KnotSocketIO {
     private let port = 3000
     
     // MARK: User credential variables
-    private let uuid = "a9cc3e68-abea-4541-972a-39cf32bd0000"
-    private let token = "097ee5c09e978c3ebc3841c362107de832d50664"
+    private let uuid = "42a8f325-18e4-44ab-8b58-b90883350000"
+    private let token = "b3350a94311f770d739b08388cbf61c14d0127c1"
     
     // MARK: Thing UUID variable
     private let deviceUUID = "95f58649-edc9-4f9b-a9ec-30cd08de0001"
@@ -158,13 +158,13 @@ extension KnotSocketIO {
         genericOperation(operation: operation, callback: callback)
     }
     
-    func getData(callback: @escaping (AnyObject?, KnotSocketError?) -> ()) {
+    func getData(thingUUID: String, sensorID: Int, callback: @escaping (AnyObject?, KnotSocketError?) -> ()) {
         let operation: ((SocketIOClient) -> ()) = { socket in
             
             var params = [String : Any]()
-            params["uuid"] = self.deviceUUID
+            params["uuid"] = thingUUID
             
-            let sensorID = ["sensor_id" : 1]
+            let sensorID = ["sensor_id" : sensorID]
             let json = try! JSONSerialization.data(withJSONObject: sensorID, options: .prettyPrinted)
             params["get_data"] = [json]
             

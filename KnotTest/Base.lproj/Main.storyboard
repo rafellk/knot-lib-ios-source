@@ -61,17 +61,17 @@
                     <navigationItem key="navigationItem" id="EZa-Cs-j7Z"/>
                     <connections>
                         <outlet property="tableView" destination="3vj-lX-W4O" id="gyt-ki-INu"/>
-                        <segue destination="Tbo-mF-p6c" kind="show" identifier="deviceDetails" id="mC8-NK-7n0"/>
+                        <segue destination="Oi4-6M-cnW" kind="show" identifier="toDevices" id="vVD-Nq-Mg5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="678" y="104"/>
         </scene>
-        <!--Device Details View Controller-->
+        <!--Sensors View Controller-->
         <scene sceneID="wae-85-eXT">
             <objects>
-                <viewController id="Tbo-mF-p6c" customClass="DeviceDetailsViewController" customModule="KnotTest" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Tbo-mF-p6c" customClass="SensorsViewController" customModule="KnotTest" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="prP-9V-PV3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -123,7 +123,65 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yG1-h5-6MO" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1446" y="104"/>
+            <point key="canvasLocation" x="2234" y="104"/>
+        </scene>
+        <!--Devices View Controller-->
+        <scene sceneID="EIy-xk-Orn">
+            <objects>
+                <viewController id="Oi4-6M-cnW" customClass="DevicesViewController" customModule="KnotTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QaJ-iN-exN">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pdS-o6-ZLp">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="simpleCell" textLabel="Az2-LM-CTj" detailTextLabel="j4u-M6-jfs" style="IBUITableViewCellStyleSubtitle" id="evN-yE-6om">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="evN-yE-6om" id="xwP-Av-mlU">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Az2-LM-CTj">
+                                                    <rect key="frame" x="15" y="5" width="33.5" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="j4u-M6-jfs">
+                                                    <rect key="frame" x="15" y="25.5" width="33" height="14.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="pdS-o6-ZLp" firstAttribute="bottom" secondItem="Rss-tV-G7x" secondAttribute="bottom" id="H3L-ab-rm8"/>
+                            <constraint firstItem="Rss-tV-G7x" firstAttribute="trailing" secondItem="pdS-o6-ZLp" secondAttribute="trailing" id="NId-4A-nXc"/>
+                            <constraint firstItem="pdS-o6-ZLp" firstAttribute="leading" secondItem="Rss-tV-G7x" secondAttribute="leading" id="TNz-zO-Nno"/>
+                            <constraint firstItem="Rss-tV-G7x" firstAttribute="top" secondItem="pdS-o6-ZLp" secondAttribute="top" id="uqg-Qa-bAI"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Rss-tV-G7x"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="qVZ-oa-JqP"/>
+                    <connections>
+                        <outlet property="tableView" destination="pdS-o6-ZLp" id="oIh-UI-gY9"/>
+                        <segue destination="Tbo-mF-p6c" kind="show" identifier="toSensors" id="KyB-hK-HJa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SB9-Gb-dLc" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1442" y="104"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="uzO-9D-wPo">
