@@ -18,7 +18,7 @@ class DevicesViewController: UIViewController {
     var selectedGatewayUUID: String?
     
     // MARK: Variables
-    private var datasource: [[String : Any]]?
+    private var datasource: [BaseThingDevice]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,23 +28,26 @@ class DevicesViewController: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         let socketIO = KnotSocketIO()
-
+        
         socketIO.getDevices { (data, error) in
             guard error == nil else {
                 print("error: \(error!.localizedDescription)")
-
+                
                 let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
                 let action = UIAlertAction(title: "OK", style: .default, handler: nil)
-
+                
                 alertController.addAction(action)
                 self.present(alertController, animated: true, completion: nil)
-
+                
                 return
             }
-
-            self.datasource = data as? [[String : Any]]
+            
+            self.datasource = data
             self.tableView.reloadData()
         }
     }
@@ -69,8 +72,8 @@ extension DevicesViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "simpleCell")
         let row = indexPath.row
         
-        cell!.textLabel?.text = (datasource![row])["name"] as? String
-        cell!.detailTextLabel?.text = (datasource![row])["uuid"] as? String
+        cell!.textLabel?.text = (datasource![row]).name
+        cell!.detailTextLabel?.text = (datasource![row]).uuid
         
         return cell!
     }
@@ -80,7 +83,7 @@ extension DevicesViewController: UITableViewDelegate, UITableViewDataSource {
             let index = indexPath.row
             let device = datasource[index]
             
-            if let uuid = device["uuid"] as? String {
+            if let uuid = device.uuid {
                 performSegue(withIdentifier: "toSensors", sender: uuid)
             }
         }

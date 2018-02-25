@@ -27,6 +27,8 @@ enum KnotSocketError: Error {
             return "Resource not found"
         case .custom(let message):
             return message
+        case .notDefined:
+            return "Unknown error"
         default:
             return ""
         }
@@ -105,7 +107,7 @@ extension KnotSocketIO {
 
 extension KnotSocketIO {
     
-    func getDevices(callback: @escaping (AnyObject?, KnotSocketError?) -> ()) {
+    func getDevices(callback: @escaping ([BaseThingDevice]?, KnotSocketError?) -> ()) {
         let operation: ((SocketIOClient) -> ()) = { socket in
             
             var params = [String : AnyObject]()
@@ -124,33 +126,32 @@ extension KnotSocketIO {
                     //                    }
                     //
                     
-                    var devices = [[String : Any]]()
+                    var things = [BaseThingDevice]()
                     
                     for result in data {
                         if let result = result as? [String : AnyObject], let error = result["error"] as? [String : AnyObject] {
                             print("An error occurred: \(error)")
+                            
                             // todo: dispatch the correct error here
                             if let message = error["message"] as? String {
                                 callback(nil, KnotSocketError.custom(message: message))
                             }
+                            
                             return
                         }
                         
                         if let result = result as? NSArray {
                             for subResult in result {
                                 if let subResult = subResult as? NSDictionary {
-                                    var device = [String : Any]()
-                                    device["name"] = subResult["name"]
-                                    device["type"] = subResult["type"]
-                                    device["uuid"] = subResult["uuid"]
-                                    device["online"] = subResult["online"]
-                                    devices.append(device)
+                                    if let thing = BaseThingDevice(dictionary: subResult) {
+                                        things.append(thing)
+                                    }
                                 }
                             }
                         }
                     }
                     
-                    callback(devices as AnyObject, nil)
+                    callback(things, nil)
                 } else {
                     // todo: dispatch error here: timeout
                     callback(nil, KnotSocketError.timeout)
@@ -177,10 +178,10 @@ extension KnotSocketIO {
                 print("data: \(data)")
                 
                 if let data = data as? [[String : Any]] {
-                    //                    if let error = first["error"] {
-                    //                        callback(nil, KnotSocketError.notFound)
-                    //                        return
-                    //                    }
+//                    if let error = first["error"] {
+//                        callback(nil, KnotSocketError.notFound)
+//                        return
+//                    }
                     
                     callback(data, nil)
                 } else {

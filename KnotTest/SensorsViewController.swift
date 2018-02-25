@@ -17,6 +17,9 @@ class SensorsViewController: UIViewController {
     // MARK: Segue Variables
     var selectedUUID: String?
     
+    // MARK: Pooling Variables
+    private var timer: Timer?
+    
     // MARK: Variables
     private var datasource: [String : Any]?
     
@@ -28,11 +31,23 @@ class SensorsViewController: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         fetch()
         
-        Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { (timer) in
+        timer = Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { (timer) in
             self.fetch()
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if let timer = timer {
+            timer.invalidate()
+            self.timer = nil
         }
     }
     
@@ -56,8 +71,8 @@ class SensorsViewController: UIViewController {
                 
                 if let data = data?.reversed() {
                     for value in data {
-                        if let sensorData = value["data"] as? [String : Any] {
-                            results["\(sensorData["sensor_id"] as! Int)"] = sensorData["value"] as! Bool
+                        if let sensorID = value.sensorData?.sensorID, let value = value.sensorData?.value {
+                            results["\(sensorID)"] = value
                         }
                     }
                 }

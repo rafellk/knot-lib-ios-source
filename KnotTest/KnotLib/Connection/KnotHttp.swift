@@ -25,7 +25,27 @@ class KnotHttp {
 
 extension KnotHttp {
     
-    func myDevices(callback: @escaping (([[String : Any]]?, Error?) -> ())) {
+    private func handleError <T> (responseResult result: Result<Any>, paramToBeRead param: String, providerCallback: @escaping ((T?, Error?) -> ()), successCallback: @escaping (([[String : Any]]) -> ())) {
+        switch result {
+        case .success(let value):
+            if let data = value as? [String : Any] {
+                if let validatedValue = data[param] as? [[String : Any]] {
+                    successCallback(validatedValue)
+                } else if let message = data["message"] as? String {
+                    providerCallback(nil, KnotSocketError.custom(message: message))
+                } else if let message = data["error"] as? String {
+                    providerCallback(nil, KnotSocketError.custom(message: message))
+                }
+            } else {
+                providerCallback(nil, KnotSocketError.notDefined)
+            }
+
+        case .failure(let error):
+            providerCallback(nil, error)
+        }
+    }
+    
+    func myDevices(callback: @escaping (([BaseDevice]?, Error?) -> ())) {
         var headers = HTTPHeaders()
         
         headers["meshblu_auth_uuid"] = uuid
@@ -33,22 +53,16 @@ extension KnotHttp {
         headers["Content-Type"] = "application/json"
 
         Alamofire.request("\(cloudURL):\(port)/mydevices", headers: headers)
-            .validate(statusCode: 200..<300)
+//            .validate(statusCode: 200..<300)
             .responseJSON { (response) in
-                switch response.result {
-                case .success(let value):
-                    if let data = value as? [String : Any], let devices = data["devices"] as? [[String : Any]]{
-                        callback(devices, nil)
-                    } else {
-                        callback(nil, KnotSocketError.notDefined)
-                    }
-                case .failure(let error):
-                    callback(nil, error)
-                }
+                self.handleError(responseResult: response.result, paramToBeRead: "devices", providerCallback: callback, successCallback: { (data) in
+                    let devices = BaseDevice.modelsFromDictionaryArray(array: data as NSArray)
+                    callback(devices, nil)
+                })
             }
     }
     
-    func data(uuid: String, callback: @escaping (([[String : Any]]?, Error?) -> ())) {
+    func data(uuid: String, callback: @escaping (([BaseDeviceData]?, Error?) -> ())) {
         var headers = HTTPHeaders()
         
         headers["meshblu_auth_uuid"] = self.uuid
@@ -58,16 +72,10 @@ extension KnotHttp {
         Alamofire.request("\(cloudURL):\(port)/data/\(uuid)", headers: headers)
             .validate(statusCode: 200..<300)
             .responseJSON { (response) in
-                switch response.result {
-                case .success(let value):
-                    if let data = value as? [String : Any], let devices = data["data"] as? [[String : Any]]{
-                        callback(devices, nil)
-                    } else {
-                        callback(nil, KnotSocketError.notDefined)
-                    }
-                case .failure(let error):
-                    callback(nil, error)
-                }
+                self.handleError(responseResult: response.result, paramToBeRead: "data", providerCallback: callback, successCallback: { (data) in
+                    let dataResults = BaseDeviceData.modelsFromDictionaryArray(array: data as NSArray)
+                    callback(dataResults, nil)
+                })
             }
     }
     

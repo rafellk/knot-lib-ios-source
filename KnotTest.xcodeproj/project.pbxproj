@@ -17,6 +17,15 @@
 		4378318220129A92008BE08A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4378318120129A92008BE08A /* Assets.xcassets */; };
 		4378318520129A92008BE08A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4378318320129A92008BE08A /* LaunchScreen.storyboard */; };
 		4378319020129A92008BE08A /* KnotTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4378318F20129A92008BE08A /* KnotTestTests.swift */; };
+		43BA530B2042F10F000B5654 /* Geo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BA53062042F10F000B5654 /* Geo.swift */; };
+		43BA530E2042F10F000B5654 /* SecurityListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BA53092042F10F000B5654 /* SecurityListItem.swift */; };
+		43BA53102042F4DD000B5654 /* BaseDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BA530F2042F4DD000B5654 /* BaseDevice.swift */; };
+		43BA53122042FCCC000B5654 /* DeviceOwner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BA53112042FCCC000B5654 /* DeviceOwner.swift */; };
+		43BA53142042FE3E000B5654 /* BaseThingDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BA53132042FE3E000B5654 /* BaseThingDevice.swift */; };
+		43BA53162042FF66000B5654 /* KnotDeviceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BA53152042FF66000B5654 /* KnotDeviceType.swift */; };
+		43BA53182043013C000B5654 /* Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BA53172043013C000B5654 /* Schema.swift */; };
+		43BA531A20430D73000B5654 /* BaseDeviceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BA531920430D73000B5654 /* BaseDeviceData.swift */; };
+		43BA531C20430E42000B5654 /* SensorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BA531B20430E42000B5654 /* SensorData.swift */; };
 		43D194C9201D285D00AB51A6 /* KnotSocketIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D194C8201D285D00AB51A6 /* KnotSocketIO.swift */; };
 		43D194CB201D2D9000AB51A6 /* KnotSocketClientEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D194CA201D2D9000AB51A6 /* KnotSocketClientEvents.swift */; };
 		9095193F0DC984E1AA8F71DA /* Pods_KnotTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9770C9562B12F71055419456 /* Pods_KnotTest.framework */; };
@@ -50,6 +59,15 @@
 		4378318B20129A92008BE08A /* KnotTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KnotTestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4378318F20129A92008BE08A /* KnotTestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnotTestTests.swift; sourceTree = "<group>"; };
 		4378319120129A92008BE08A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		43BA53062042F10F000B5654 /* Geo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Geo.swift; sourceTree = "<group>"; };
+		43BA53092042F10F000B5654 /* SecurityListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecurityListItem.swift; sourceTree = "<group>"; };
+		43BA530F2042F4DD000B5654 /* BaseDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseDevice.swift; sourceTree = "<group>"; };
+		43BA53112042FCCC000B5654 /* DeviceOwner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceOwner.swift; sourceTree = "<group>"; };
+		43BA53132042FE3E000B5654 /* BaseThingDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseThingDevice.swift; sourceTree = "<group>"; };
+		43BA53152042FF66000B5654 /* KnotDeviceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnotDeviceType.swift; sourceTree = "<group>"; };
+		43BA53172043013C000B5654 /* Schema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schema.swift; sourceTree = "<group>"; };
+		43BA531920430D73000B5654 /* BaseDeviceData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDeviceData.swift; sourceTree = "<group>"; };
+		43BA531B20430E42000B5654 /* SensorData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorData.swift; sourceTree = "<group>"; };
 		43D194C8201D285D00AB51A6 /* KnotSocketIO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnotSocketIO.swift; sourceTree = "<group>"; };
 		43D194CA201D2D9000AB51A6 /* KnotSocketClientEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnotSocketClientEvents.swift; sourceTree = "<group>"; };
 		8850B3C6283FE31FCC5C3803 /* Pods-KnotTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KnotTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KnotTest/Pods-KnotTest.debug.xcconfig"; sourceTree = "<group>"; };
@@ -124,12 +142,37 @@
 			path = KnotTestTests;
 			sourceTree = "<group>";
 		};
-		43D194CC201D2D9C00AB51A6 /* KnotLib */ = {
+		43BA53032042F0DC000B5654 /* Connection */ = {
 			isa = PBXGroup;
 			children = (
 				43D194C8201D285D00AB51A6 /* KnotSocketIO.swift */,
 				43D194CA201D2D9000AB51A6 /* KnotSocketClientEvents.swift */,
 				432714ED2023D1C5007D7D8D /* KnotHttp.swift */,
+			);
+			path = Connection;
+			sourceTree = "<group>";
+		};
+		43BA53042042F0F3000B5654 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				43BA530F2042F4DD000B5654 /* BaseDevice.swift */,
+				43BA53092042F10F000B5654 /* SecurityListItem.swift */,
+				43BA53062042F10F000B5654 /* Geo.swift */,
+				43BA53112042FCCC000B5654 /* DeviceOwner.swift */,
+				43BA53132042FE3E000B5654 /* BaseThingDevice.swift */,
+				43BA53152042FF66000B5654 /* KnotDeviceType.swift */,
+				43BA53172043013C000B5654 /* Schema.swift */,
+				43BA531920430D73000B5654 /* BaseDeviceData.swift */,
+				43BA531B20430E42000B5654 /* SensorData.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		43D194CC201D2D9C00AB51A6 /* KnotLib */ = {
+			isa = PBXGroup;
+			children = (
+				43BA53042042F0F3000B5654 /* Models */,
+				43BA53032042F0DC000B5654 /* Connection */,
 			);
 			path = KnotLib;
 			sourceTree = "<group>";
@@ -359,11 +402,20 @@
 				43D194CB201D2D9000AB51A6 /* KnotSocketClientEvents.swift in Sources */,
 				43695A582041ECF800C9204D /* DevicesViewController.swift in Sources */,
 				4378317D20129A92008BE08A /* ViewController.swift in Sources */,
+				43BA531C20430E42000B5654 /* SensorData.swift in Sources */,
+				43BA530E2042F10F000B5654 /* SecurityListItem.swift in Sources */,
+				43BA531A20430D73000B5654 /* BaseDeviceData.swift in Sources */,
 				432714EE2023D1C5007D7D8D /* KnotHttp.swift in Sources */,
+				43BA53162042FF66000B5654 /* KnotDeviceType.swift in Sources */,
 				43695A562041ECDE00C9204D /* SensorsViewController.swift in Sources */,
 				4378317B20129A92008BE08A /* AppDelegate.swift in Sources */,
+				43BA53122042FCCC000B5654 /* DeviceOwner.swift in Sources */,
+				43BA53182043013C000B5654 /* Schema.swift in Sources */,
+				43BA53142042FE3E000B5654 /* BaseThingDevice.swift in Sources */,
 				43695A5A2041F31C00C9204D /* SensorViewController.swift in Sources */,
 				43D194C9201D285D00AB51A6 /* KnotSocketIO.swift in Sources */,
+				43BA530B2042F10F000B5654 /* Geo.swift in Sources */,
+				43BA53102042F4DD000B5654 /* BaseDevice.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

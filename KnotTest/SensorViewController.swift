@@ -19,6 +19,9 @@ class SensorViewController: UIViewController {
     var selectedThingUUID: String?
     var sensorID: String?
     
+    // MARK: Pooling Variables
+    private var timer: Timer?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -47,11 +50,23 @@ class SensorViewController: UIViewController {
 //                }
 //            })
 //        }
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         fetch()
         
-        Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { (timer) in
+        timer = Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { (timer) in
             self.fetch()
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if let timer = timer {
+            timer.invalidate()
+            self.timer = nil
         }
     }
     
@@ -75,12 +90,12 @@ class SensorViewController: UIViewController {
                 
                 if let data = data?.reversed() {
                     for value in data {
-                        if let sensorData = value["data"] as? [String : Any], String(sensorData["sensor_id"] as! Int) == self.sensorID, let value = sensorData["value"] {
+                        if let value = value.sensorData?.value {
                             result = "\(value)"
                         }
                     }
                 }
-                
+
                 DispatchQueue.main.async {
                     self.sensorStatusLabel.text = result
                     self.sensorChangeSwitch.setOn(result == "1", animated: true)
@@ -90,6 +105,6 @@ class SensorViewController: UIViewController {
     }
     
     @IBAction func switchPressed(_ sender: Any) {
-        
+        // todo: implement this
     }
 }
