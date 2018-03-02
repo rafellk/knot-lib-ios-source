@@ -16,9 +16,9 @@ class KnotHttp {
     private let port = 3000
     
     // MARK: User credential variables
-    private let uuid = "42a8f325-18e4-44ab-8b58-b90883350000"
-    private let token = "b3350a94311f770d739b08388cbf61c14d0127c1"
-    
+    private let uuid = "b7f8bbed-767f-4e5e-9770-46d8a1510000"
+    private let token = "af91eaebc52c4ff332e530c701ff3f704e6c091b"
+
     // MARK: Thing UUID variable
     private let deviceUUID = "95f58649-edc9-4f9b-a9ec-30cd08de0001"
 }
@@ -65,12 +65,12 @@ extension KnotHttp {
     func data(uuid: String, callback: @escaping (([BaseDeviceData]?, Error?) -> ())) {
         var headers = HTTPHeaders()
         
-        headers["meshblu_auth_uuid"] = self.uuid
+        headers["meshblu_auth_uuid"] = uuid
         headers["meshblu_auth_token"] = token
         headers["Content-Type"] = "application/json"
 
         Alamofire.request("\(cloudURL):\(port)/data/\(uuid)", headers: headers)
-            .validate(statusCode: 200..<300)
+//            .validate(statusCode: 200..<300)
             .responseJSON { (response) in
                 self.handleError(responseResult: response.result, paramToBeRead: "data", providerCallback: callback, successCallback: { (data) in
                     let dataResults = BaseDeviceData.modelsFromDictionaryArray(array: data as NSArray)
@@ -79,25 +79,25 @@ extension KnotHttp {
             }
     }
     
-    func readData(callback: @escaping (([[String : Any]]?, Error?) -> ())) {
-        var headers = HTTPHeaders()
-        
-        headers["meshblu_auth_uuid"] = uuid
-        headers["meshblu_auth_token"] = token
-        headers["Content-Type"] = "application/json"
-        
-        Alamofire.request("\(cloudURL):\(port)/data/\(deviceUUID)", headers: headers)
-            .validate(statusCode: 200..<300)
-            .validate(contentType: ["application/json"])
-            .responseJSON { (response) in
-                switch response.result {
-                case .success(let value):
-                    if let value = value as? [String : Any], let data = value["data"] as? [[String : Any]] {
-                        callback(data, nil)
-                    }
-                case .failure(let error):
-                    callback(nil, error)
-                }
-        }
-    }
+//    func readData(callback: @escaping (([[String : Any]]?, Error?) -> ())) {
+//        var headers = HTTPHeaders()
+//
+//        headers["meshblu_auth_uuid"] = uuid
+//        headers["meshblu_auth_token"] = token
+//        headers["Content-Type"] = "application/json"
+//
+//        Alamofire.request("\(cloudURL):\(port)/data/\(deviceUUID)", headers: headers)
+//            .validate(statusCode: 200..<300)
+//            .validate(contentType: ["application/json"])
+//            .responseJSON { (response) in
+//                switch response.result {
+//                case .success(let value):
+//                    if let value = value as? [String : Any], let data = value["data"] as? [[String : Any]] {
+//                        callback(data, nil)
+//                    }
+//                case .failure(let error):
+//                    callback(nil, error)
+//                }
+//        }
+//    }
 }

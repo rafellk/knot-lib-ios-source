@@ -30,18 +30,18 @@ class ViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let http = KnotHttp()
-        
+
         http.myDevices { (data, error) in
             guard error == nil else {
                 let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
                 let action = UIAlertAction(title: "OK", style: .default, handler: nil)
-                
+
                 alertController.addAction(action)
                 self.present(alertController, animated: true, completion: nil)
-                
+
                 return
             }
-            
+
             if let data = data {
                 self.datasource = data
                 self.tableView.reloadData()

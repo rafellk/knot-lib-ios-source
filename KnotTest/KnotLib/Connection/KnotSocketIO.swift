@@ -29,8 +29,6 @@ enum KnotSocketError: Error {
             return message
         case .notDefined:
             return "Unknown error"
-        default:
-            return ""
         }
     }
 }
@@ -42,9 +40,9 @@ class KnotSocketIO {
     private let port = 3000
     
     // MARK: User credential variables
-    private let uuid = "42a8f325-18e4-44ab-8b58-b90883350000"
-    private let token = "b3350a94311f770d739b08388cbf61c14d0127c1"
-    
+    private let uuid = "b7f8bbed-767f-4e5e-9770-46d8a1510000"
+    private let token = "af91eaebc52c4ff332e530c701ff3f704e6c091b"
+
     // MARK: Thing UUID variable
     private let deviceUUID = "95f58649-edc9-4f9b-a9ec-30cd08de0001"
     
@@ -194,27 +192,24 @@ extension KnotSocketIO {
         genericOperation(operation: operation, callback: callback)
     }
     
-    func setData(callback: @escaping (AnyObject?, KnotSocketError?) -> ()) {
+    func setData(thingUUID: String, callback: @escaping (AnyObject?, KnotSocketError?) -> ()) {
         let operation: ((SocketIOClient) -> ()) = { socket in
             
             var params = [String : Any]()
-            params["uuid"] = self.deviceUUID
+            params["uuid"] = thingUUID
             
             let sensorID: [String : Any] = [
-                "sensor_id" : 1,
-                "value": true
+                "sensor_id" : 2,
+                "value": false
             ]
             
-            let json = try! JSONSerialization.data(withJSONObject: sensorID, options: .prettyPrinted)
-            params["set_data"] = [json]
+            params["set_data"] = [sensorID]
             
             let emitCallback = socket.emitWithAck(KnotSocketClientEvent.update.rawValue, params)
             
             emitCallback.timingOut(after: 0, callback: { (data) in
-                print("data: \(data)")
-                
                 if data.count > 0, let first = data.first as? NSDictionary {
-                    if let error = first["error"] {
+                    guard first["error"] == nil else {
                         callback(nil, KnotSocketError.notFound)
                         return
                     }
