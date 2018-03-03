@@ -113,7 +113,7 @@ extension KnotSocketIO {
             
             let emitCallback = socket.emitWithAck(KnotSocketClientEvent.devices.rawValue, params)
             
-            emitCallback.timingOut(after: 5, callback: { (data) in
+            emitCallback.timingOut(after: 10, callback: { (data) in
                 print("data: \(data)")
                 
                 if data.count > 0 {
@@ -130,7 +130,6 @@ extension KnotSocketIO {
                         if let result = result as? [String : AnyObject], let error = result["error"] as? [String : AnyObject] {
                             print("An error occurred: \(error)")
                             
-                            // todo: dispatch the correct error here
                             if let message = error["message"] as? String {
                                 callback(nil, KnotSocketError.custom(message: message))
                             }
@@ -151,7 +150,6 @@ extension KnotSocketIO {
                     
                     callback(things, nil)
                 } else {
-                    // todo: dispatch error here: timeout
                     callback(nil, KnotSocketError.timeout)
                 }
             })
@@ -172,7 +170,7 @@ extension KnotSocketIO {
             
             let emitCallback = socket.emitWithAck(KnotSocketClientEvent.update.rawValue, params)
             
-            emitCallback.timingOut(after: 0, callback: { (data) in
+            emitCallback.timingOut(after: 10, callback: { (data) in
                 print("data: \(data)")
                 
                 if let data = data as? [[String : Any]] {
@@ -187,7 +185,7 @@ extension KnotSocketIO {
         genericOperation(operation: operation, callback: callback)
     }
     
-    func setData(thingUUID: String, callback: @escaping (AnyObject?, KnotSocketError?) -> ()) {
+    func setData(thingUUID: String, sensorID: Int, value: Any, callback: @escaping (AnyObject?, KnotSocketError?) -> ()) {
         let operation: ((SocketIOClient) -> ()) = { socket in
             
             var params = [String : Any]()
@@ -202,7 +200,7 @@ extension KnotSocketIO {
             
             let emitCallback = socket.emitWithAck(KnotSocketClientEvent.update.rawValue, params)
             
-            emitCallback.timingOut(after: 0, callback: { (data) in
+            emitCallback.timingOut(after: 10, callback: { (data) in
                 if data.count > 0, let first = data.first as? NSDictionary {
                     guard first["error"] == nil else {
                         callback(nil, KnotSocketError.notFound)
@@ -211,7 +209,6 @@ extension KnotSocketIO {
                     
                     callback(data as AnyObject, nil)
                 } else {
-                    // todo: dispatch error here: timeout
                     callback(nil, KnotSocketError.timeout)
                 }
             })
