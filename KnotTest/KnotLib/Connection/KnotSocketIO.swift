@@ -176,11 +176,6 @@ extension KnotSocketIO {
                 print("data: \(data)")
                 
                 if let data = data as? [[String : Any]] {
-//                    if let error = first["error"] {
-//                        callback(nil, KnotSocketError.notFound)
-//                        return
-//                    }
-                    
                     callback(data, nil)
                 } else {
                     // todo: dispatch error here: timeout

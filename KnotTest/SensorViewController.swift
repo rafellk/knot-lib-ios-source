@@ -28,7 +28,7 @@ class SensorViewController: UIViewController {
         navigationItem.title = "Sensor ID: \(sensorID ?? "")"
         navigationController?.navigationBar.prefersLargeTitles = true
         
-//        if let thingUUID = selectedThingUUID, let selectedSensorID = sensorID, let sensorID = Int(selectedSensorID) {
+//        if let thingUUID = selectedThingUUID, let selectedSensorID = sensorID, let sensorID = Int(selectedSensorID) {8
 //            KnotSocketIO().getData(thingUUID: thingUUID, sensorID: sensorID, callback: { (data, error) in
 //                guard error == nil else {
 //                    print("error: \(error!.localizedDescription)")
