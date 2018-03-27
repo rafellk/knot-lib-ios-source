@@ -62,10 +62,10 @@ extension KnotHttp {
             }
     }
     
-    func data(uuid: String, callback: @escaping (([BaseDeviceData]?, Error?) -> ())) {
+    func data(deviceUUID: String, callback: @escaping (([BaseDeviceData]?, Error?) -> ())) {
         var headers = HTTPHeaders()
         
-        headers["meshblu_auth_uuid"] = uuid
+        headers["meshblu_auth_uuid"] = self.uuid
         headers["meshblu_auth_token"] = token
         headers["Content-Type"] = "application/json"
 

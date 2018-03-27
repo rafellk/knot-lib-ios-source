@@ -54,7 +54,7 @@ class SensorsViewController: UIViewController {
     private func fetch() {
         if let uuid = self.selectedUUID {
             
-            KnotHttp().data(uuid: uuid, callback: { (data, error) in
+            KnotHttp().data(deviceUUID: uuid, callback: { (data, error) in
                 guard error == nil else {
                     print("error: \(error!.localizedDescription)")
                     

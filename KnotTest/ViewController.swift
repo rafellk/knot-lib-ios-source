@@ -29,9 +29,8 @@ class ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let http = KnotHttp()
 
-        http.myDevices { (data, error) in
+        KnotSocketIO().setData(thingUUID: "7f2e5d75-19a3-4c84-b5c7-c12445e90001", sensorID: 3, value: 1000) { (data, error) in
             guard error == nil else {
                 let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
                 let action = UIAlertAction(title: "OK", style: .default, handler: nil)
@@ -41,12 +40,31 @@ class ViewController: UIViewController {
 
                 return
             }
-
-            if let data = data {
-                self.datasource = data
-                self.tableView.reloadData()
-            }
+            
+            print("success")
         }
+        
+//        KnotSocketIO().getData(thingUUID: "123", sensorID: 12) { (data, error) in
+//        }
+        
+//        let http = KnotHttp()
+//
+//        http.myDevices { (data, error) in
+//            guard error == nil else {
+//                let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
+//                let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+//
+//                alertController.addAction(action)
+//                self.present(alertController, animated: true, completion: nil)
+//
+//                return
+//            }
+//
+//            if let data = data {
+//                self.datasource = data
+//                self.tableView.reloadData()
+//            }
+//        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

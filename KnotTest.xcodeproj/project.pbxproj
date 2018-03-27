@@ -16,7 +16,6 @@
 		4378318020129A92008BE08A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4378317E20129A92008BE08A /* Main.storyboard */; };
 		4378318220129A92008BE08A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4378318120129A92008BE08A /* Assets.xcassets */; };
 		4378318520129A92008BE08A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4378318320129A92008BE08A /* LaunchScreen.storyboard */; };
-		4378319020129A92008BE08A /* KnotTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4378318F20129A92008BE08A /* KnotTestTests.swift */; };
 		43BA530B2042F10F000B5654 /* Geo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BA53062042F10F000B5654 /* Geo.swift */; };
 		43BA530E2042F10F000B5654 /* SecurityListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BA53092042F10F000B5654 /* SecurityListItem.swift */; };
 		43BA53102042F4DD000B5654 /* BaseDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BA530F2042F4DD000B5654 /* BaseDevice.swift */; };
@@ -28,6 +27,8 @@
 		43BA531C20430E42000B5654 /* SensorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BA531B20430E42000B5654 /* SensorData.swift */; };
 		43D194C9201D285D00AB51A6 /* KnotSocketIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D194C8201D285D00AB51A6 /* KnotSocketIO.swift */; };
 		43D194CB201D2D9000AB51A6 /* KnotSocketClientEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D194CA201D2D9000AB51A6 /* KnotSocketClientEvents.swift */; };
+		43FB7D23204AE4AA00FAF41D /* KnotHttpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FB7D22204AE4A900FAF41D /* KnotHttpTests.swift */; };
+		43FB7D25204AE7E400FAF41D /* KnotSocketIOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FB7D24204AE7E400FAF41D /* KnotSocketIOTests.swift */; };
 		9095193F0DC984E1AA8F71DA /* Pods_KnotTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9770C9562B12F71055419456 /* Pods_KnotTest.framework */; };
 		B9F13E2E31290C0D928FFDCE /* Pods_KnotTestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1049E16E2687A522405D9C /* Pods_KnotTestTests.framework */; };
 /* End PBXBuildFile section */
@@ -57,7 +58,6 @@
 		4378318420129A92008BE08A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4378318620129A92008BE08A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4378318B20129A92008BE08A /* KnotTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KnotTestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4378318F20129A92008BE08A /* KnotTestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnotTestTests.swift; sourceTree = "<group>"; };
 		4378319120129A92008BE08A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		43BA53062042F10F000B5654 /* Geo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Geo.swift; sourceTree = "<group>"; };
 		43BA53092042F10F000B5654 /* SecurityListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecurityListItem.swift; sourceTree = "<group>"; };
@@ -70,6 +70,8 @@
 		43BA531B20430E42000B5654 /* SensorData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorData.swift; sourceTree = "<group>"; };
 		43D194C8201D285D00AB51A6 /* KnotSocketIO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnotSocketIO.swift; sourceTree = "<group>"; };
 		43D194CA201D2D9000AB51A6 /* KnotSocketClientEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnotSocketClientEvents.swift; sourceTree = "<group>"; };
+		43FB7D22204AE4A900FAF41D /* KnotHttpTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KnotHttpTests.swift; sourceTree = "<group>"; };
+		43FB7D24204AE7E400FAF41D /* KnotSocketIOTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnotSocketIOTests.swift; sourceTree = "<group>"; };
 		8850B3C6283FE31FCC5C3803 /* Pods-KnotTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KnotTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KnotTest/Pods-KnotTest.debug.xcconfig"; sourceTree = "<group>"; };
 		9770C9562B12F71055419456 /* Pods_KnotTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KnotTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D012F3FE63E06A07FE5658D6 /* Pods-KnotTestTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KnotTestTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KnotTestTests/Pods-KnotTestTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -136,8 +138,9 @@
 		4378318E20129A92008BE08A /* KnotTestTests */ = {
 			isa = PBXGroup;
 			children = (
-				4378318F20129A92008BE08A /* KnotTestTests.swift */,
+				43FB7D22204AE4A900FAF41D /* KnotHttpTests.swift */,
 				4378319120129A92008BE08A /* Info.plist */,
+				43FB7D24204AE7E400FAF41D /* KnotSocketIOTests.swift */,
 			);
 			path = KnotTestTests;
 			sourceTree = "<group>";
@@ -257,6 +260,7 @@
 					};
 					4378318A20129A92008BE08A = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 4378317620129A92008BE08A;
 					};
@@ -423,7 +427,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4378319020129A92008BE08A /* KnotTestTests.swift in Sources */,
+				43FB7D25204AE7E400FAF41D /* KnotSocketIOTests.swift in Sources */,
+				43FB7D23204AE4AA00FAF41D /* KnotHttpTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -602,12 +607,14 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N2PZ2HT5T9;
 				INFOPLIST_FILE = KnotTestTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rlmg.knotTest.KnotTestTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KnotTest.app/KnotTest";
@@ -620,6 +627,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N2PZ2HT5T9;
 				INFOPLIST_FILE = KnotTestTests/Info.plist;

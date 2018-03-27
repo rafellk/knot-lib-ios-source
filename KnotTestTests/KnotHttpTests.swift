@@ -1,0 +1,58 @@
+//
+//  KnotSocketIOTests.swift
+//  KnotTestTests
+//
+//  Created by Rafael Lucena on 3/3/18.
+//  Copyright © 2018 com.rlmg.knotTest. All rights reserved.
+//
+
+import XCTest
+@testable import KnotTest
+
+class KnotHttpTests: XCTestCase {
+    
+    let thingUUID = "28acfe24-a276-43c1-b6e0-b4d2d1710001"
+    
+    override func setUp() {
+        super.setUp()
+    }
+    
+    override func tearDown() {
+        super.tearDown()
+    }
+    
+    func testValidKnotHttpMyDevicesRequest() {
+        let responseExpectation = expectation(description: "request response")
+        
+        KnotHttp().myDevices { (data, error) in
+            if error == nil {
+                responseExpectation.fulfill()
+            }
+        }
+        
+        waitForExpectations(timeout: 15) { (error) in
+            XCTAssert(error == nil)
+        }
+    }
+    
+    func testValidKnotHttpDataRequest() {
+        let responseExpectation = expectation(description: "request response")
+
+        KnotHttp().data(deviceUUID: thingUUID) { (data, error) in
+            if error == nil {
+                responseExpectation.fulfill()
+            }
+        }
+        
+        waitForExpectations(timeout: 15) { (error) in
+            XCTAssert(error == nil)
+        }
+    }
+    
+//    func testPerformanceExample() {
+//        // This is an example of a performance test case.
+//        self.measure {
+//            // Put the code you want to measure the time of here.
+//        }
+//    }
+}

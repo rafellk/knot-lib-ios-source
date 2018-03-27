@@ -192,8 +192,8 @@ extension KnotSocketIO {
             params["uuid"] = thingUUID
             
             let sensorID: [String : Any] = [
-                "sensor_id" : 2,
-                "value": false
+                "sensor_id" : sensorID,
+                "value": value
             ]
             
             params["set_data"] = [sensorID]
