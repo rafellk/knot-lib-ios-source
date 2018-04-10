@@ -23,10 +23,15 @@ class KnotHttpTests: XCTestCase {
     
     func testValidKnotHttpMyDevicesRequest() {
         let responseExpectation = expectation(description: "request response")
+        let validResponseExpectation = expectation(description: "valid response expectation")
         
         KnotHttp().myDevices { (data, error) in
             if error == nil {
                 responseExpectation.fulfill()
+            }
+            
+            if data != nil {
+                validResponseExpectation.fulfill()
             }
         }
         
@@ -37,10 +42,15 @@ class KnotHttpTests: XCTestCase {
     
     func testValidKnotHttpDataRequest() {
         let responseExpectation = expectation(description: "request response")
+        let validResponseExpectation = expectation(description: "valid response expectation")
 
         KnotHttp().data(deviceUUID: thingUUID) { (data, error) in
             if error == nil {
                 responseExpectation.fulfill()
+            }
+            
+            if data != nil {
+                validResponseExpectation.fulfill()
             }
         }
         
@@ -49,10 +59,10 @@ class KnotHttpTests: XCTestCase {
         }
     }
     
-//    func testPerformanceExample() {
-//        // This is an example of a performance test case.
-//        self.measure {
-//            // Put the code you want to measure the time of here.
-//        }
-//    }
+    func testPerformanceExample() {
+        // This is an example of a performance test case.
+        self.measure {
+            // Put the code you want to measure the time of here.
+        }
+    }
 }

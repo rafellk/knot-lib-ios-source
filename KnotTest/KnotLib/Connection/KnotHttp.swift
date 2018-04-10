@@ -45,38 +45,48 @@ extension KnotHttp {
         }
     }
     
-    func myDevices(callback: @escaping (([BaseDevice]?, Error?) -> ())) {
+    private func generic(opetation callback: ((SessionManager, HTTPHeaders) -> ())?) {
         var headers = HTTPHeaders()
         
         headers["meshblu_auth_uuid"] = uuid
         headers["meshblu_auth_token"] = token
         headers["Content-Type"] = "application/json"
-
-        Alamofire.request("\(cloudURL):\(port)/mydevices", headers: headers)
-//            .validate(statusCode: 200..<300)
-            .responseJSON { (response) in
-                self.handleError(responseResult: response.result, paramToBeRead: "devices", providerCallback: callback, successCallback: { (data) in
-                    let devices = BaseDevice.modelsFromDictionaryArray(array: data as NSArray)
-                    callback(devices, nil)
-                })
+        
+        let manager = Alamofire.SessionManager.default
+        manager.session.configuration.timeoutIntervalForRequest = 30
+        manager.session.configuration.timeoutIntervalForResource = 30
+        
+        callback?(manager, headers)
+    }
+    
+    func myDevices(callback: @escaping (([BaseDevice]?, Error?) -> ())) {
+        generic { [weak self] (manager, headers) in
+            if let url = self?.cloudURL, let port = self?.port {
+                manager.request("\(url):\(port)/mydevices", headers: headers)
+                    //                .validate(statusCode: 200..<300)
+                    .responseJSON { (response) in
+                        self?.handleError(responseResult: response.result, paramToBeRead: "devices", providerCallback: callback, successCallback: { (data) in
+                            let devices = BaseDevice.modelsFromDictionaryArray(array: data as NSArray)
+                            callback(devices, nil)
+                        })
+                }
             }
+        }
     }
     
     func data(deviceUUID: String, callback: @escaping (([BaseDeviceData]?, Error?) -> ())) {
-        var headers = HTTPHeaders()
-        
-        headers["meshblu_auth_uuid"] = self.uuid
-        headers["meshblu_auth_token"] = token
-        headers["Content-Type"] = "application/json"
-
-        Alamofire.request("\(cloudURL):\(port)/data/\(uuid)", headers: headers)
-//            .validate(statusCode: 200..<300)
-            .responseJSON { (response) in
-                self.handleError(responseResult: response.result, paramToBeRead: "data", providerCallback: callback, successCallback: { (data) in
-                    let dataResults = BaseDeviceData.modelsFromDictionaryArray(array: data as NSArray)
-                    callback(dataResults, nil)
-                })
+        generic { [weak self] (manager, headers) in
+            if let url = self?.cloudURL, let port = self?.port, let uuid = self?.uuid {
+                manager.request("\(url):\(port)/data/\(uuid)", headers: headers)
+    //                .validate(statusCode: 200..<300)
+                    .responseJSON { (response) in
+                        self?.handleError(responseResult: response.result, paramToBeRead: "data", providerCallback: callback, successCallback: { (data) in
+                            let dataResults = BaseDeviceData.modelsFromDictionaryArray(array: data as NSArray)
+                            callback(dataResults, nil)
+                        })
+                }
             }
+        }
     }
     
 //    func readData(callback: @escaping (([[String : Any]]?, Error?) -> ())) {

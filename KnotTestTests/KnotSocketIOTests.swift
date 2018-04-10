@@ -33,11 +33,16 @@ class KnotSocketIOTests: XCTestCase {
     }
     
     func testValidKnotSocketIOGetDevicesRequest() {
-        let responseExpectation = expectation(description: "request response")
+        let responseExpectation = expectation(description: "request response expectation")
+        let validResponseExpectation = expectation(description: "valid response expectation")
         
         knotSocketIO.getDevices { (data, error) in
             if error == nil {
                 responseExpectation.fulfill()
+            }
+
+            if data != nil {
+                validResponseExpectation.fulfill()
             }
         }
         
@@ -48,10 +53,15 @@ class KnotSocketIOTests: XCTestCase {
     
     func testValidKnotSocketIOGetDataRequest() {
         let responseExpectation = expectation(description: "request response")
+        let validResponseExpectation = expectation(description: "valid response expectation")
         
         knotSocketIO.getData(thingUUID: thingUUID, sensorID: sensorID) { (data, error) in
             if error == nil {
                 responseExpectation.fulfill()
+            }
+            
+            if data != nil {
+                validResponseExpectation.fulfill()
             }
         }
         
@@ -62,10 +72,15 @@ class KnotSocketIOTests: XCTestCase {
     
     func testValidKnotSocketIOSetDataRequest() {
         let responseExpectation = expectation(description: "request response")
+        let validResponseExpectation = expectation(description: "valid response expectation")
         
         knotSocketIO.setData(thingUUID: thingUUID, sensorID: sensorID, value: sensorValue) { (data, error) in
             if error == nil {
                 responseExpectation.fulfill()
+            }
+            
+            if data != nil {
+                validResponseExpectation.fulfill()
             }
         }
         

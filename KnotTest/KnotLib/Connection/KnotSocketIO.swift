@@ -82,7 +82,9 @@ extension KnotSocketIO {
             })
         }
 
-        manager.connect()
+        socket.connect(timeoutAfter: 10) {
+            print("Error: timeout connecting to the server")
+        }
     }
     
     private func genericOperation<T> (operation: @escaping ((SocketIOClient) -> ()), callback: @escaping (T?, KnotSocketError?) -> ()) {
