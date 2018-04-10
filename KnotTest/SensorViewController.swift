@@ -27,29 +27,6 @@ class SensorViewController: UIViewController {
         
         navigationItem.title = "Sensor ID: \(sensorID ?? "")"
         navigationController?.navigationBar.prefersLargeTitles = true
-        
-//        if let thingUUID = selectedThingUUID, let selectedSensorID = sensorID, let sensorID = Int(selectedSensorID) {8
-//            KnotSocketIO().getData(thingUUID: thingUUID, sensorID: sensorID, callback: { (data, error) in
-//                guard error == nil else {
-//                    print("error: \(error!.localizedDescription)")
-//
-//                    let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
-//                    let action = UIAlertAction(title: "OK", style: .default, handler: nil)
-//
-//                    alertController.addAction(action)
-//                    self.present(alertController, animated: true, completion: nil)
-//
-//                    return
-//                }
-//
-//                if let data = data {
-//                    for result in data {
-//                        if let getData = result["get_data"] as? [[String : Any]], let getData[0] {
-//                        }
-//                    }
-//                }
-//            })
-//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

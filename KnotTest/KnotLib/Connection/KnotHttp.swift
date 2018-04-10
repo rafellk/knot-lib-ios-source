@@ -63,7 +63,6 @@ extension KnotHttp {
         generic { [weak self] (manager, headers) in
             if let url = self?.cloudURL, let port = self?.port {
                 manager.request("\(url):\(port)/mydevices", headers: headers)
-                    //                .validate(statusCode: 200..<300)
                     .responseJSON { (response) in
                         self?.handleError(responseResult: response.result, paramToBeRead: "devices", providerCallback: callback, successCallback: { (data) in
                             let devices = BaseDevice.modelsFromDictionaryArray(array: data as NSArray)
@@ -78,7 +77,6 @@ extension KnotHttp {
         generic { [weak self] (manager, headers) in
             if let url = self?.cloudURL, let port = self?.port, let uuid = self?.uuid {
                 manager.request("\(url):\(port)/data/\(uuid)", headers: headers)
-    //                .validate(statusCode: 200..<300)
                     .responseJSON { (response) in
                         self?.handleError(responseResult: response.result, paramToBeRead: "data", providerCallback: callback, successCallback: { (data) in
                             let dataResults = BaseDeviceData.modelsFromDictionaryArray(array: data as NSArray)
@@ -88,26 +86,4 @@ extension KnotHttp {
             }
         }
     }
-    
-//    func readData(callback: @escaping (([[String : Any]]?, Error?) -> ())) {
-//        var headers = HTTPHeaders()
-//
-//        headers["meshblu_auth_uuid"] = uuid
-//        headers["meshblu_auth_token"] = token
-//        headers["Content-Type"] = "application/json"
-//
-//        Alamofire.request("\(cloudURL):\(port)/data/\(deviceUUID)", headers: headers)
-//            .validate(statusCode: 200..<300)
-//            .validate(contentType: ["application/json"])
-//            .responseJSON { (response) in
-//                switch response.result {
-//                case .success(let value):
-//                    if let value = value as? [String : Any], let data = value["data"] as? [[String : Any]] {
-//                        callback(data, nil)
-//                    }
-//                case .failure(let error):
-//                    callback(nil, error)
-//                }
-//        }
-//    }
 }

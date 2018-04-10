@@ -119,13 +119,6 @@ extension KnotSocketIO {
                 print("data: \(data)")
                 
                 if data.count > 0 {
-                    //                    guard result["Error"] == nil else {
-                    //                        // todo: dispatch error
-                    //                        // todo: verify if we really need this verification
-                    //                        return
-                    //                    }
-                    //
-                    
                     var things = [BaseThingDevice]()
                     
                     for result in data {
