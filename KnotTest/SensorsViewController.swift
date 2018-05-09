@@ -113,7 +113,7 @@ extension SensorsViewController: UITableViewDelegate, UITableViewDataSource {
             let sensorID = Array(datasource.keys)[row]
             
             cell.textLabel?.text = "sensor id: \(sensorID)"
-            cell.detailTextLabel?.text = "value: \(datasource[sensorID] as! Bool)"
+            cell.detailTextLabel?.text = "value: \(datasource[sensorID] ?? "No value")"
         }
         
         return cell

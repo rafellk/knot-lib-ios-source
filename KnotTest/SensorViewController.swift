@@ -65,10 +65,11 @@ class SensorViewController: UIViewController {
                 
                 var result = ""
                 
-                if let data = data?.reversed() {
+                if let data = data {
                     for value in data {
-                        if let value = value.sensorData?.value {
-                            result = "\(value)"
+                        if let dataValue = value.sensorData?.value, let sensorID = value.sensorData?.sensorID, "\(sensorID)" == self.sensorID {
+                            result = "\(dataValue)"
+                            break
                         }
                     }
                 }

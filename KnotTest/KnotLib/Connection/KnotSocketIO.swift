@@ -40,11 +40,8 @@ class KnotSocketIO {
     private let port = 3000
     
     // MARK: User credential variables
-    private let uuid = "b7f8bbed-767f-4e5e-9770-46d8a1510000"
-    private let token = "af91eaebc52c4ff332e530c701ff3f704e6c091b"
-
-    // MARK: Thing UUID variable
-    private let deviceUUID = "95f58649-edc9-4f9b-a9ec-30cd08de0001"
+    private let uuid = "f2c7d7e5-2b14-4172-91d8-256b6ca80000"
+    private let token = "3eff25ac9dea999e40de8ed1ba2d42320f52c961"
     
     // MARK: Variables
 }

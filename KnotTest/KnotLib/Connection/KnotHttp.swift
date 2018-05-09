@@ -16,11 +16,8 @@ class KnotHttp {
     private let port = 3000
     
     // MARK: User credential variables
-    private let uuid = "b7f8bbed-767f-4e5e-9770-46d8a1510000"
-    private let token = "af91eaebc52c4ff332e530c701ff3f704e6c091b"
-
-    // MARK: Thing UUID variable
-    private let deviceUUID = "95f58649-edc9-4f9b-a9ec-30cd08de0001"
+    private let uuid = "f2c7d7e5-2b14-4172-91d8-256b6ca80000"
+    private let token = "3eff25ac9dea999e40de8ed1ba2d42320f52c961"
 }
 
 extension KnotHttp {
@@ -53,36 +50,32 @@ extension KnotHttp {
         headers["Content-Type"] = "application/json"
         
         let manager = Alamofire.SessionManager.default
-        manager.session.configuration.timeoutIntervalForRequest = 30
-        manager.session.configuration.timeoutIntervalForResource = 30
+        manager.session.configuration.timeoutIntervalForRequest = 15
+        manager.session.configuration.timeoutIntervalForResource = 15
         
         callback?(manager, headers)
     }
     
     func myDevices(callback: @escaping (([BaseDevice]?, Error?) -> ())) {
-        generic { [weak self] (manager, headers) in
-            if let url = self?.cloudURL, let port = self?.port {
-                manager.request("\(url):\(port)/mydevices", headers: headers)
-                    .responseJSON { (response) in
-                        self?.handleError(responseResult: response.result, paramToBeRead: "devices", providerCallback: callback, successCallback: { (data) in
-                            let devices = BaseDevice.modelsFromDictionaryArray(array: data as NSArray)
-                            callback(devices, nil)
-                        })
-                }
+        generic { (manager, headers) in
+            manager.request("\(self.cloudURL):\(self.port)/mydevices", headers: headers)
+                .responseJSON { (response) in
+                    self.handleError(responseResult: response.result, paramToBeRead: "devices", providerCallback: callback, successCallback: { (data) in
+                        let devices = BaseDevice.modelsFromDictionaryArray(array: data as NSArray)
+                        callback(devices, nil)
+                    })
             }
         }
     }
     
     func data(deviceUUID: String, callback: @escaping (([BaseDeviceData]?, Error?) -> ())) {
-        generic { [weak self] (manager, headers) in
-            if let url = self?.cloudURL, let port = self?.port, let uuid = self?.uuid {
-                manager.request("\(url):\(port)/data/\(uuid)", headers: headers)
-                    .responseJSON { (response) in
-                        self?.handleError(responseResult: response.result, paramToBeRead: "data", providerCallback: callback, successCallback: { (data) in
-                            let dataResults = BaseDeviceData.modelsFromDictionaryArray(array: data as NSArray)
-                            callback(dataResults, nil)
-                        })
-                }
+        generic { (manager, headers) in
+            manager.request("\(self.cloudURL):\(self.port)/data/\(deviceUUID)", headers: headers)
+                .responseJSON { (response) in
+                    self.handleError(responseResult: response.result, paramToBeRead: "data", providerCallback: callback, successCallback: { (data) in
+                        let dataResults = BaseDeviceData.modelsFromDictionaryArray(array: data as NSArray)
+                        callback(dataResults, nil)
+                    })
             }
         }
     }
