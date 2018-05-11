@@ -16,8 +16,8 @@ class KnotHttp {
     private let port = 3000
     
     // MARK: User credential variables
-    private let uuid = "f2c7d7e5-2b14-4172-91d8-256b6ca80000"
-    private let token = "3eff25ac9dea999e40de8ed1ba2d42320f52c961"
+    private let uuid = "c65caa69-17e0-4414-b968-2a7f37c20000"
+    private let token = "88a78c7266cdd22eec17608ba6982fe384898428"
 }
 
 extension KnotHttp {

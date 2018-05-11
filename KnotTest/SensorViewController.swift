@@ -83,6 +83,22 @@ class SensorViewController: UIViewController {
     }
     
     @IBAction func switchPressed(_ sender: Any) {
-        // todo: implement this
+        if let switchButton = sender as? UISwitch, let uuid = selectedThingUUID, let sensorID = sensorID, let intSensorID = Int(sensorID) {
+            KnotSocketIO().setData(thingUUID: uuid, sensorID: intSensorID, value: !switchButton.isOn) { (data, error) in
+                guard error == nil else {
+                    print("error: \(error!.localizedDescription)")
+                    
+                    let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
+                    let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    
+                    alertController.addAction(action)
+                    self.present(alertController, animated: true, completion: nil)
+                    
+                    return
+                }
+
+                print("")
+            }
+        }
     }
 }

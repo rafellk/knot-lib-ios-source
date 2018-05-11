@@ -69,7 +69,7 @@ class SensorsViewController: UIViewController {
                 
                 var results = [String : Any]()
                 
-                if let data = data?.reversed() {
+                if let data = data {
                     for value in data {
                         if let sensorID = value.sensorData?.sensorID, let value = value.sensorData?.value {
                             results["\(sensorID)"] = value
