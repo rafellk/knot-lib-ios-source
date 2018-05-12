@@ -29,6 +29,10 @@
 		43D194CB201D2D9000AB51A6 /* KnotSocketClientEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D194CA201D2D9000AB51A6 /* KnotSocketClientEvents.swift */; };
 		43FB7D23204AE4AA00FAF41D /* KnotHttpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FB7D22204AE4A900FAF41D /* KnotHttpTests.swift */; };
 		43FB7D25204AE7E400FAF41D /* KnotSocketIOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FB7D24204AE7E400FAF41D /* KnotSocketIOTests.swift */; };
+		57144D3320A737C400CA3DC9 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57144D3220A737C400CA3DC9 /* MainViewController.swift */; };
+		57144D3620A7508200CA3DC9 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57144D3520A7508200CA3DC9 /* Util.swift */; };
+		57144D3820A7561300CA3DC9 /* FeederViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57144D3720A7561300CA3DC9 /* FeederViewController.swift */; };
+		57144D3A20A75C0E00CA3DC9 /* SmartFeederSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57144D3920A75C0E00CA3DC9 /* SmartFeederSettingsViewController.swift */; };
 		9095193F0DC984E1AA8F71DA /* Pods_KnotTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9770C9562B12F71055419456 /* Pods_KnotTest.framework */; };
 		B9F13E2E31290C0D928FFDCE /* Pods_KnotTestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1049E16E2687A522405D9C /* Pods_KnotTestTests.framework */; };
 /* End PBXBuildFile section */
@@ -72,6 +76,10 @@
 		43D194CA201D2D9000AB51A6 /* KnotSocketClientEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnotSocketClientEvents.swift; sourceTree = "<group>"; };
 		43FB7D22204AE4A900FAF41D /* KnotHttpTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KnotHttpTests.swift; sourceTree = "<group>"; };
 		43FB7D24204AE7E400FAF41D /* KnotSocketIOTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnotSocketIOTests.swift; sourceTree = "<group>"; };
+		57144D3220A737C400CA3DC9 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		57144D3520A7508200CA3DC9 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		57144D3720A7561300CA3DC9 /* FeederViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeederViewController.swift; sourceTree = "<group>"; };
+		57144D3920A75C0E00CA3DC9 /* SmartFeederSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartFeederSettingsViewController.swift; sourceTree = "<group>"; };
 		8850B3C6283FE31FCC5C3803 /* Pods-KnotTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KnotTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KnotTest/Pods-KnotTest.debug.xcconfig"; sourceTree = "<group>"; };
 		9770C9562B12F71055419456 /* Pods_KnotTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KnotTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D012F3FE63E06A07FE5658D6 /* Pods-KnotTestTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KnotTestTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KnotTestTests/Pods-KnotTestTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -121,7 +129,8 @@
 		4378317920129A92008BE08A /* KnotTest */ = {
 			isa = PBXGroup;
 			children = (
-				43695A552041ECDE00C9204D /* SensorsViewController.swift */,
+				57144D3420A7506800CA3DC9 /* Utils */,
+				57144D3120A7379D00CA3DC9 /* Controllers */,
 				4378317A20129A92008BE08A /* AppDelegate.swift */,
 				4378317C20129A92008BE08A /* ViewController.swift */,
 				4378317E20129A92008BE08A /* Main.storyboard */,
@@ -129,8 +138,6 @@
 				4378318320129A92008BE08A /* LaunchScreen.storyboard */,
 				43D194CC201D2D9C00AB51A6 /* KnotLib */,
 				4378318620129A92008BE08A /* Info.plist */,
-				43695A572041ECF800C9204D /* DevicesViewController.swift */,
-				43695A592041F31C00C9204D /* SensorViewController.swift */,
 			);
 			path = KnotTest;
 			sourceTree = "<group>";
@@ -180,6 +187,27 @@
 			path = KnotLib;
 			sourceTree = "<group>";
 		};
+		57144D3120A7379D00CA3DC9 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				43695A552041ECDE00C9204D /* SensorsViewController.swift */,
+				43695A572041ECF800C9204D /* DevicesViewController.swift */,
+				43695A592041F31C00C9204D /* SensorViewController.swift */,
+				57144D3220A737C400CA3DC9 /* MainViewController.swift */,
+				57144D3720A7561300CA3DC9 /* FeederViewController.swift */,
+				57144D3920A75C0E00CA3DC9 /* SmartFeederSettingsViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		57144D3420A7506800CA3DC9 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				57144D3520A7508200CA3DC9 /* Util.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		A3562CFE7C35D12EFCAB704C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -212,7 +240,6 @@
 				4378317420129A92008BE08A /* Frameworks */,
 				4378317520129A92008BE08A /* Resources */,
 				55DDD34B354CABF035D9B595 /* [CP] Embed Pods Frameworks */,
-				05B56E8044D3B86D5303266E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -231,8 +258,6 @@
 				4378318720129A92008BE08A /* Sources */,
 				4378318820129A92008BE08A /* Frameworks */,
 				4378318920129A92008BE08A /* Resources */,
-				532BCC5F50210AE5AD18A89D /* [CP] Embed Pods Frameworks */,
-				2BA1AA691C4E68539C934A15 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -306,64 +331,22 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		05B56E8044D3B86D5303266E /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KnotTest/Pods-KnotTest-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		0FC8EE835C9E02D0F2B4EC2C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-KnotTest-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		2BA1AA691C4E68539C934A15 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KnotTestTests/Pods-KnotTestTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		532BCC5F50210AE5AD18A89D /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KnotTestTests/Pods-KnotTestTests-frameworks.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		55DDD34B354CABF035D9B595 /* [CP] Embed Pods Frameworks */ = {
@@ -372,9 +355,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-KnotTest/Pods-KnotTest-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Socket.IO-Client-Swift/SocketIO.framework",
+				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SocketIO.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -387,13 +377,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-KnotTestTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -415,11 +408,15 @@
 				4378317B20129A92008BE08A /* AppDelegate.swift in Sources */,
 				43BA53122042FCCC000B5654 /* DeviceOwner.swift in Sources */,
 				43BA53182043013C000B5654 /* Schema.swift in Sources */,
+				57144D3620A7508200CA3DC9 /* Util.swift in Sources */,
 				43BA53142042FE3E000B5654 /* BaseThingDevice.swift in Sources */,
 				43695A5A2041F31C00C9204D /* SensorViewController.swift in Sources */,
 				43D194C9201D285D00AB51A6 /* KnotSocketIO.swift in Sources */,
+				57144D3320A737C400CA3DC9 /* MainViewController.swift in Sources */,
+				57144D3A20A75C0E00CA3DC9 /* SmartFeederSettingsViewController.swift in Sources */,
 				43BA530B2042F10F000B5654 /* Geo.swift in Sources */,
 				43BA53102042F4DD000B5654 /* BaseDevice.swift in Sources */,
+				57144D3820A7561300CA3DC9 /* FeederViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

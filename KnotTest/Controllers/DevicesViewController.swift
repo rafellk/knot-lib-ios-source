@@ -84,7 +84,8 @@ extension DevicesViewController: UITableViewDelegate, UITableViewDataSource {
             let device = datasource[index]
             
             if let uuid = device.uuid {
-                performSegue(withIdentifier: "toSensors", sender: uuid)
+                //performSegue(withIdentifier: "toSensors", sender: uuid)
+                Util.idThing = uuid
             }
         }
     }
